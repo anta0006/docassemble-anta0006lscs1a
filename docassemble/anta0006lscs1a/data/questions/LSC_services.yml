@@ -1,0 +1,23 @@
+---
+objects:
+  - LSC_services: DAList.using(there_are_any=True, auto_gather=False)
+---
+code: |
+  for a_service in LSCdatabase:
+    if LSC_charged_with_drink_driving_offence:
+      drink_driving_ok = True
+    else:
+      # If they don't, add the service if it does NOT exclusively cater for drink             driving.
+      if a_service['drinkdriving']:
+        # The service exclusively caters for drink driving, so exclude it.
+        drink_driving_ok = False
+      else:
+        # The service does not exclusively cater for drink driving, so keep it in.
+        drink_driving_ok = True
+    
+    if drink_driving_ok:
+      LSC_services.append(a_service)
+  
+  # This has to be the last line in the filtering code logic.
+  LSC_services.gathered = True
+---

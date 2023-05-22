@@ -1,0 +1,211 @@
+---
+include: 
+  - LSC_S1_Questions.yml
+  - LSC_services.yml
+  - LSCdatabase.yml
+---
+mandatory: True
+code: | 
+  # MISC/OTHER OFFENCES BRANCH
+  if LSC_welcome_screen == 'exit':
+    command('exit')
+  elif LSC_welcome_screen == 'proceed':
+    if LSC_charged_with_drink_driving_offence == False:
+      if LSC_charged_with_other == True:
+        if LSC_directory_Screen == 'exit':
+          command('exit')
+        elif LSC_directory_Screen == 'proceed':
+          LSC_gen_info_screen
+      else: 
+        if LSC_seeking_gen_info == 'exit':
+          command('exit')
+        elif LSC_seeking_gen_info == 'proceed':
+          LSC_gen_info_screen
+    else:  
+      # DUI BRANCH 
+      if LSC_define_charge == 'LSC_DUI':
+        if LSC_child_present_DUI == False:
+          if LSC_first_offence_question_no_child == True: 
+            if LSC_first_offence_no_c == 'exit':
+              command('exit')
+            elif LSC_first_offence_no_c == 'proceed':
+              LSC_end_screen
+          else: 
+            if LSC_subsequent_offence_no_c == 'exit':
+              command('exit')
+            elif LSC_subsequent_offence_no_c == 'proceed':
+              LSC_end_screen
+        else: 
+          if LSC_first_offence_question_yes_c_DUI == True:
+            if LSC_first_offence_yes_c == 'exit':
+              command('exit')
+            elif LSC_first_offence_yes_c == 'proceed':
+              LSC_end_screen
+          else: 
+            if LSC_subsequent_offence_yes_c == 'exit':
+              command('exit')
+            elif LSC_subsequent_offence_yes_c == 'proceed':
+              LSC_end_screen
+              
+      # REFUSE TEST BRANCH     
+      if LSC_define_charge == 'LSC_RT':
+        if LSC_first_offence_q_RT == True:
+          if LSC_child_present_first_RT == False:
+            if LSC_first_RT_no_c == 'exit':
+              command('exit')
+            elif LSC_first_RT_no_c == 'proceed':
+              LSC_end_screen
+          else:
+            if LSC_first_RT_yes_c == 'exit':
+              command('exit')
+            elif LSC_first_RT_yes_c == 'proceed':
+              LSC_end_screen 
+        else:
+          if LSC_first_offence_q_RT == False:
+            if LSC_child_present_RT == False:
+              if LSC_subsequent_RT_no_c == 'exit':
+                command('exit')
+              elif LSC_subsequent_RT_no_c == 'proceed':
+                LSC_end_screen
+            else:
+              if LSC_subsequent_RT_yes_c == 'exit':
+                command('exit')
+              elif LSC_subsequent_RT_yes_c == 'proceed':
+                LSC_end_screen
+        
+      # PROVISIONAL LICENCE PCA BRANCH 
+      if LSC_define_charge == 'LSC_PCA':
+        if LSC_licence_class == 'LSC_learners_provisional':
+          if LSC_provisional_PCA == 'exit':
+            command('exit')
+          elif LSC_provisional_PCA == 'proceed':
+            LSC_end_screen
+      # PCA FIRST OFFENCE BRANCH
+        else:
+          LSC_licence_class == 'LSC_full_license'
+          if LSC_PCA_first_offence_question == True: 
+            if LSC_BAC_range_question == 'LSC_low_BAC':
+              if LSC_FO_PCA_low_BAC == 'exit':
+                command('exit')
+              elif LSC_FO_PCA_low_BAC == 'proceed':
+                LSC_end_screen
+            elif LSC_BAC_range_question == 'LSC_mid_BCA':
+              if LSC_PCA_FO_PCA_mid_BAC_child_question == False:
+                if LSC_FO_PCA_mid_BAC_no_c == 'exit':
+                  command('exit')
+                elif LSC_FO_PCA_mid_BAC_no_c == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_FO_PCA_mid_BAC_yes_c == 'exit':
+                  command('exit')
+                elif LSC_FO_PCA_mid_BAC_yes_c == 'proceed':
+                  LSC_end_screen
+            elif LSC_BAC_range_question == 'LSC_high_BAC':
+              if LSC_PCA_FO_high_BAC_child_question == False:
+                if LSC_PCA_FO_high_BAC_no_c == 'exit':
+                  command('exit')
+                elif LSC_PCA_FO_high_BAC_no_c == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_FO_high_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_FO_high_BAC_child_y == 'proceed':
+                  LSC_end_screen        
+          # PCA SECOND OFFENCE BRANCH
+          elif LSC_PCA_subsequent_offence_number_question == 'LSC_PCA_second':
+            if LSC_PCA_SO_BAC_question == 'LSC_low_BAC_so':
+              if LSC_PCA_SO_low_BAC == 'exit':
+                command('exit')
+              elif LSC_PCA_SO_low_BAC == 'proceed':
+                LSC_end_screen     
+            elif LSC_PCA_SO_BAC_question == 'LSC_mid_BAC_so':
+              if LSC_PCA_SO_mid_BAC_child_question == False:
+                if LSC_PCA_SO_mid_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_SO_mid_BAC_child_n == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_SO_mid_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_SO_mid_BAC_child_y == 'proceed':
+                  LSC_end_screen
+            elif LSC_PCA_SO_BAC_question == 'LSC_high_BAC_so':  
+              if LSC_PCA_SO_high_BAC_child_question == False:
+                if LSC_PCA_high_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_high_BAC_child_n == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_high_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_high_BAC_child_y == 'proceed':
+                  LSC_end_screen
+                
+          # PCA THIRD OFFENCE BRANCH                
+          elif LSC_PCA_subsequent_offence_number_question == 'LSC_PCA_third':
+            if LSC_PCA_TO_BAC_question == 'LSC_low_BAC_to':
+              if LSC_PCA_TO_low_BAC == 'exit':
+                command('exit')
+              elif LSC_PCA_TO_low_BAC == 'proceed':
+                LSC_end_screen
+              
+            elif LSC_PCA_TO_BAC_question == 'LSC_mid_BAC_to':
+              if LSC_PCA_TO_mid_BAC_child_question == True:
+                if LSC_PCA_TO_mid_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_TO_mid_BAC_child_y == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_TO_mid_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_TO_mid_BAC_child_n == 'proceed':
+                  LSC_end_screen        
+            elif LSC_PCA_TO_BAC_question == 'LSC_high_BAC_to':
+              if LSC_PCA_TO_high_BAC_child_question == True:
+                if LSC_PCA_TO_high_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_TO_high_BAC_child_y == 'proceed':
+                  LSC_end_screen
+              else: 
+                if LSC_PCA_TO_high_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_TO_high_BAC_child_n == 'proceed':
+                  LSC_end_screen
+                
+        # PCA SUBSEQUENT OFFENCE BRANCH
+          elif LSC_PCA_subsequent_offence_number_question == 'LSC_PCA_subsequent':
+            if LSC_PCA_SUB_BAC_question == 'LSC_SUB_low_BAC':
+              if LSC_SUB_low_BAC == 'exit':
+                command('exit')
+              elif LSC_SUB_low_BAC == 'proceed':
+                LSC_end_screen  
+            elif LSC_PCA_SUB_BAC_question == 'LSC_SUB_mid_BAC':
+              if LSC_PCA_SUB_mid_BAC_child_quesiton == True:
+                if LSC_PCA_SUB_mid_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_SUB_mid_BAC_child_y == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_SUB_mid_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_SUB_mid_BAC_child_n == 'proceed':
+                  LSC_end_screen
+            elif LSC_PCA_SUB_BAC_question == 'LSC_SUB_high_BAC':
+              if LSC_PCA_SUB_high_BAC_child_question == True: 
+                if LSC_PCA_SUB_high_BAC_child_y == 'exit':
+                  command('exit')
+                elif LSC_PCA_SUB_high_BAC_child_y == 'proceed':
+                  LSC_end_screen
+              else:
+                if LSC_PCA_SUB_high_BAC_child_n == 'exit':
+                  command('exit')
+                elif LSC_PCA_SUB_high_BAC_child_n == 'proceed':
+                  LSC_end_screen
+---
+table: LSC_services_table
+rows: LSC_services
+columns:
+  - Name: row_item['service name']
+  - Link: |
+      '[{}]({})'.format(row_item['link'], row_item['website'])
+---

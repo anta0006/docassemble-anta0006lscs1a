@@ -1,0 +1,29 @@
+---
+variable name: LSCdatabase
+use objects: True
+data:
+  - service name: Legal Services Commission
+    website: https://lsc.sa.gov.au/cb_pages/publications.php
+    link: Link
+    drinkdriving: False
+  - service name: Legal Help Line
+    website: tel:1300 366 424
+    link: Link
+    drinkdriving: False
+  - service name: General Legal Information Directory
+    website: https://lsc.sa.gov.au/handbook/
+    link: Link
+    drinkdriving: False
+  - service name: Legal Live Chat Service
+    website: https://secure.livechatinc.com/licence/6327061/v2/open_chat.cgi?groups=0
+    link: Link
+    drinkdriving: False
+  - service name: Drink Driving and the Law Fact Sheet
+    website: https://lsc.sa.gov.au/cb_pages/drinkdrivingfactsheet.php
+    link: Link
+    drinkdriving: True
+  - service name: Drink Driving Directory
+    website: https://lawhandbook.sa.gov.au/ch12s08s03.php
+    link: Link
+    drinkdriving: True
+---
